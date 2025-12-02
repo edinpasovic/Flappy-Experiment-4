@@ -16,7 +16,7 @@ function updateTitleScreen()
   if titleScreen ~= nil then
     titleScreen:draw(0,0)
   end
-  gfx.drawText("*Press A to start the game*", 10, 210)
+  gfx.drawText("*Press A or B to start the game*", 10, 210)
   if playdate.buttonJustPressed(playdate.kButtonA) or playdate.buttonJustPressed(playdate.kButtonB) then
     GameState = "gameplay"
   end
