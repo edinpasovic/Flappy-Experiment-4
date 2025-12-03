@@ -4,3 +4,5 @@ description=Fourth attempt at Flappy Bird clone for Playdate
 bundleID=com.villewilson.flappy4
 version=1.0.1
 buildNumber=1
+pdxversion=30000
+buildtime=818038744

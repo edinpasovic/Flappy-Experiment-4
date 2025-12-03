@@ -13,10 +13,9 @@ GameState = "titlescreen"
 local titleScreen = gfx.image.new("images/title-page.png")
 
 function updateTitleScreen()
-  if titleScreen ~= nil then
-    titleScreen:draw(0,0)
-  end
-  gfx.drawText("*Press A or B to start the game*", 10, 210)
+  assert(titleScreen) -- make sure TitleScreen image exists
+  titleScreen:draw(0,0)
+  gfx.drawText("*Press A to start the game*", 10, 210)
   if playdate.buttonJustPressed(playdate.kButtonA) or playdate.buttonJustPressed(playdate.kButtonB) then
     GameState = "gameplay"
   end
@@ -24,6 +23,7 @@ end
 
 --Big Cloud sprite
 local bigCloudImg = gfx.image.new("images/bg-bigcloud.png")
+assert(bigCloudImg)
 local bigCloudSpr = gfx.sprite.new(bigCloudImg)
 local bigCloudSprites = {}
 for i = 1, 3 do
@@ -41,6 +41,7 @@ end
 
 --Small Cloud sprite
 local smallCloudImg = gfx.image.new("images/bg-smallcloud.png")
+assert(smallCloudImg)
 local smallCloudSpr = gfx.sprite.new(smallCloudImg)
 local smallCloudSprites = {}
 for i = 1, 3 do
@@ -70,6 +71,7 @@ end
 
 --Forest background sprite
 local forestBgImg = gfx.image.new("images/bg-forest.png")
+assert(forestBgImg)
 local forestBgSpr = gfx.sprite.new(forestBgImg)
 local forestSprites = {}
 for i = 1, 11 do
@@ -87,6 +89,7 @@ end
 
 --Bush background sprite
 local bushBgImg = gfx.image.new("images/bg-bushes.png")
+assert(bushBgImg)
 local bushBgSpr = gfx.sprite.new(bushBgImg)
 local bushSprites = {}
 for i = 1, 11 do
@@ -104,6 +107,7 @@ end
 
 --Road background sprites
 local roadBgImg = gfx.image.new("images/bg-road.png")
+assert(roadBgImg)
 local roadBgSpr = gfx.sprite.new(roadBgImg)
 local roadSprites = {}
 --create a row of 21 road sprites
@@ -133,14 +137,14 @@ end
 
 --Trees
 local treeImg = gfx.image.new("images/treetrunk.png")
-local treeSprite = gfx.sprite.new(treeImg)
+assert(treeImg)
 --Upper Tree
-local upperTree = treeSprite:copy()
+local upperTree = gfx.sprite.new(treeImg)
 upperTree:setCollideRect(1, 2, 24, 153)
 upperTree:moveTo(300, math.random(0,70))
 upperTree:add()
 --Lower Tree
-local lowerTree = treeSprite:copy()
+local lowerTree = gfx.sprite.new(treeImg)
 lowerTree:setCollideRect(1, 2, 24, 153)
 lowerTree:moveTo(520, math.random(170, screenHeight))
 lowerTree:add()

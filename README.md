@@ -13,7 +13,7 @@ BUGS FIXED
 - Bird sprite falls to the bottom on start
 
 BUGS
-- None so far
+- Tree sprites are displayed in Simulator but not on the console
 
 TO ADD
 - Game over screen
