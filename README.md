@@ -19,6 +19,7 @@ TO ADD
 - Game over screen
 - Scoring system and scoring UI
 - Game needs to start gradually speeding up as the score grows
+- Turn all objects into classes
 
 --------------------
 1.0 (02-12-2025)
