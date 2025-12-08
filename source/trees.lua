@@ -4,6 +4,7 @@ local gfx = playdate.graphics
 class('Tree').extends(gfx.sprite)
 
 function Tree:init(x, upOrDown, velocity)
+  Tree.super.init(self)
   local treeImg = gfx.image.new("images/treetrunk.png")
   assert(treeImg)
   self:setImage(treeImg)

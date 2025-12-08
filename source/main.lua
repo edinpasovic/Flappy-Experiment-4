@@ -3,6 +3,7 @@ import "Corelibs/sprites"
 import "Corelibs/animation"
 
 import "treeSpawner"
+import "player"
 
 local pd = playdate
 local gfx = playdate.graphics
@@ -139,72 +140,14 @@ function moveBgSprites(spriteArray, spriteWidth, speed)
   end
 end
 
--- --Trees
--- local treeImg = gfx.image.new("images/treetrunk.png")
--- assert(treeImg)
--- --Upper Tree
--- local upperTree = gfx.sprite.new(treeImg)
--- upperTree:setCollideRect(1, 2, 24, 153)
--- upperTree:moveTo(300, math.random(0,70))
--- upperTree:add()
--- --Lower Tree
--- local lowerTree = gfx.sprite.new(treeImg)
--- lowerTree:setCollideRect(1, 2, 24, 153)
--- lowerTree:moveTo(520, math.random(170, screenHeight))
--- lowerTree:add()
-
--- --Move Trees
--- function moveTrees(tree, randomUp, randomDown)
---   tree:moveBy(-2 - gameSpeed, 0)
---   if tree.x <= -15 then
---     tree:moveTo(415, math.random(randomUp, randomDown))
---   end
--- end
-
-Tree(300, 'up', 2)
-Tree(520, 'down', 2)
-
---Player
-local birdImage = gfx.image.new("images/bird.png")
-local birdSprite = gfx.sprite.new(birdImage)
-
-local birdVelocity = 0
-local bird = birdSprite:copy()
-bird:setCollideRect(2,2,18,18)
-bird:moveTo(80, 100)
-bird:add()
-
-function updateBird()
-  local crankChange, _ = playdate.getCrankChange()
-  birdVelocity -= crankChange * 0.05
-  if birdVelocity > 12 then
-    birdVelocity = 12
-  elseif birdVelocity < -12 then
-    birdVelocity = -12
-  end
-  bird:moveBy(0, birdVelocity)
-  if bird.y < 10 then
-    birdVelocity = 0
-    bird:moveTo(80, 10)
-  elseif bird.y > 230 then
-    birdVelocity = 0
-    bird:moveTo(80, 230)
-  end
-  --checking for collisions
-  local _actualX, _actualY, _collisions, length = bird:checkCollisions(bird.x, bird.y)
-  if length > 0 then
-    GameState = "titlescreen"
-    resetGameState()
-  end
-end
+spawnTrees()
+local bird = Player(80, 100)
 
 function resetGameState()
-  bird:moveTo(80, 100)
-  birdVelocity = 0
   clearTrees() -- remove previous trees
   spawnTrees() -- add trees back to initial x positions
-  -- upperTree:moveTo(300, math.random(0,70))
-  -- lowerTree:moveTo(520, math.random(170, screenHeight))
+  bird:remove()
+  bird = Player(80, 100)
 end
 
 function playdate.update()
@@ -220,8 +163,5 @@ function playdate.update()
     moveBgSprites(forestSprites, 20, 1)
     moveClouds(smallCloudSprites, 0, 20, 90)
     moveClouds(bigCloudSprites, 0, 30, 100)
-    -- moveTrees(upperTree, 0, 70)
-    -- moveTrees(lowerTree, 170, screenHeight)
-    updateBird()
   end
 end

@@ -2,6 +2,24 @@ Flappy Bird game clone
 Work in progress
 
 --------------------
+1.0.2 (06-12-2025)
+
+ADDED
+- Player is a sprite class now
+- Trees are a separate class now
+- Treespawner regulates spawning and reseting of the trees
+
+BUGS
+- Not a bug but resetting player is still solved weirdly. Needs to be improved
+- Collision detection in the Player function. Needs to be separated
+
+TO ADD
+- Game over screen
+- Scoring system and scoring UI
+- Game needs to start gradually speeding up as the score grows
+- Turn background scrolling objects into a separate class
+
+--------------------
 1.0.1 (02-12-2025)
 
 ADDED
