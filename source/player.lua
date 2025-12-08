@@ -5,9 +5,9 @@ class('Player').extends(gfx.sprite)
 
 function Player:init(x, y)
   Player.super.init(self)
-  local birdImg = gfx.image.new("images/bird.png")
-  assert(birdImg)
-  self:setImage(birdImg)
+  self.imageTable = gfx.imagetable.new('images/birdanim')
+  self.animation = gfx.animation.loop.new(150, self.imageTable, true)
+  self:setImage(self.imageTable[1])
   self:moveTo(x, y)
   self:add()
 
@@ -16,6 +16,9 @@ function Player:init(x, y)
 end
 
 function Player:update()
+  --animation
+  self:setImage(self.animation:image())
+
   -- controls
   local crankChange, _ = pd.getCrankChange()
   self.velocity -= crankChange * 0.05
