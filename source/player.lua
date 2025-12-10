@@ -39,7 +39,6 @@ function Player:update()
   --checking for collisions
   local _actualX, _actualY, _collisions, length = self:checkCollisions(self.x, self.y)
   if length > 0 then
-    GameState = "titlescreen"
-    resetGameState()
+    GameState = "gameover"
   end
 end

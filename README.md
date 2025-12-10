@@ -2,6 +2,22 @@ Flappy Bird game clone
 Work in progress
 
 --------------------
+1.0.5 (10-12-2025)
+
+ADDED
+- Game Over screen (temporary)
+- New game font
+
+BUGS
+- Highscores saving and loading won't work - Disabled temporarily
+
+TO ADD
+- Turn background scrolling objects into a separate class
+- Save highscores
+- Display highscores on GameOver screen
+- Add function to menu to reset highscores
+
+--------------------
 1.0.4 (08-12-2025)
 
 ADDED

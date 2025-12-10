@@ -1,38 +1,6 @@
 local pd = playdate
 local gfx = playdate.graphics
 
--- local scoreSprite
--- local score
-
--- function createScoreDisplay()
---   scoreSprite = gfx.sprite.new()
---   score = 0
---   updateDisplay()
---   scoreSprite:setCenter(0,0)
---   scoreSprite:moveTo(0, 220)
---   scoreSprite:add()
--- end
-
--- function updateDisplay()
---   local scoreText = "Score: " .. score
---   local textWidth, textHeight = gfx.getTextSize(scoreText)
---   local scoreImage = gfx.image.new(textWidth, textHeight)
---   gfx.pushContext(scoreImage)
---     gfx.drawText(scoreText, 0, 0)
---   gfx.popContext()
---   scoreSprite:setImage(scoreImage)
--- end
-
--- function incrementScore()
---   score += 1
---   updateDisplay()
--- end
-
--- function resetScore()
---   score = 0
---   updateDisplay()
--- end
-
 local score = 0
 
 function updateScore()
@@ -60,3 +28,25 @@ end
 function resetGameSpeed()
   GameSpeed = 1
 end
+
+function getScore()
+  return score
+end
+
+-- function saveHighScore(num)
+--   pd.datastore.write({highScore = num})
+-- end
+
+-- function resetHighScore()
+--   local menu = pd.getSystemMenu()
+--   menu:addMenuItem("reset score", function()
+--     pd.datastore.write({highScore = 0})
+--   end)
+-- end
+
+-- function checkHighScore()
+--   if score > highScore then
+--     highScore = score
+--     saveHighScore(score)
+--   end
+-- end

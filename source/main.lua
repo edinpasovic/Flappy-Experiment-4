@@ -13,6 +13,9 @@ local screenWidth = playdate.display.getWidth()
 GameSpeed = 1
 GameState = "titlescreen"
 
+local gameFont = gfx.font.new("fonts/font-Cuberick-Bold")
+gfx.setFont(gameFont)
+
 --Title Screen
 local titleScreen = gfx.image.new("images/wingingit.png")
 
@@ -22,6 +25,17 @@ function updateTitleScreen()
   -- gfx.drawText("*Press A to start the game*", 10, 210)
   if pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonB) then
     GameState = "gameplay"
+  end
+end
+
+--Game Over Screen
+function updateGameOverScreen()
+  gfx.drawTextAligned("Game Over!", 200, 100, kTextAlignment.center)
+  gfx.drawTextAligned("Your score: ".. getScore(), 200, 120, kTextAlignment.center)
+  gfx.drawTextAligned("Press A or B button to proceed", 200, 200, kTextAlignment.center)
+  if pd.buttonJustPressed(pd.kButtonA) or pd.buttonIsPressed(pd.kButtonB) then
+    resetGameState()
+    GameState = "titlescreen"
   end
 end
 
@@ -65,7 +79,7 @@ end
 function moveClouds(cloudSpritesArray, cloudSpeed, randomUp, randomDown)
   for i = 1, #cloudSpritesArray do
     cloudSpritesArray[i].x -= GameSpeed + cloudSpeed
-    if cloudSpritesArray[i].x == - 10 then
+    if cloudSpritesArray[i].x < - 10 then
       cloudSpritesArray[i].x += 430
       cloudSpritesArray[i].y = math.random(randomUp, randomDown)
     end
@@ -164,5 +178,9 @@ function playdate.update()
     moveClouds(smallCloudSprites, 0, 20, 90)
     moveClouds(bigCloudSprites, 0, 30, 100)
     updateScore()
+  end
+  if GameState == "gameover" then
+    gfx.clear()
+    updateGameOverScreen()
   end
 end
