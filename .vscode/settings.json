@@ -5,7 +5,8 @@
     "Lua.diagnostics.globals": [
       "import",
       "Tree",
-      "Player"
+      "Player",
+      "bgSprite"
     ],
     // Sumneko Lua type definition doesn't support callbacks/overrides yet,
     // so do this to make playdate.update() override not complain as much

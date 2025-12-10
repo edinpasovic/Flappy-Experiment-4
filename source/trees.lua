@@ -20,6 +20,7 @@ function Tree:update()
   self:moveBy(-self.velocity - GameSpeed, 0)
   if self.x < -15 then
     self:moveTo(415, treeYPos(self.upOrDown))
+    incrementScore()
   end
 end
 

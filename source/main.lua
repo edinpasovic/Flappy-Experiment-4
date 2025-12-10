@@ -4,24 +4,23 @@ import "Corelibs/animation"
 
 import "treeSpawner"
 import "player"
+import "scoreDisplay"
 
 local pd = playdate
 local gfx = playdate.graphics
 local screenWidth = playdate.display.getWidth()
-local screenHeight = playdate.display.getHeight()
 
-local gameSpeed = 1
 GameSpeed = 1
 GameState = "titlescreen"
 
 --Title Screen
-local titleScreen = gfx.image.new("images/title-page.png")
+local titleScreen = gfx.image.new("images/wingingit.png")
 
 function updateTitleScreen()
   assert(titleScreen) -- make sure TitleScreen image exists
   titleScreen:draw(0,0)
-  gfx.drawText("*Press A to start the game*", 10, 210)
-  if playdate.buttonJustPressed(playdate.kButtonA) or playdate.buttonJustPressed(playdate.kButtonB) then
+  -- gfx.drawText("*Press A to start the game*", 10, 210)
+  if pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonB) then
     GameState = "gameplay"
   end
 end
@@ -65,7 +64,7 @@ end
 --move clouds
 function moveClouds(cloudSpritesArray, cloudSpeed, randomUp, randomDown)
   for i = 1, #cloudSpritesArray do
-    cloudSpritesArray[i].x -= gameSpeed + cloudSpeed
+    cloudSpritesArray[i].x -= GameSpeed + cloudSpeed
     if cloudSpritesArray[i].x == - 10 then
       cloudSpritesArray[i].x += 430
       cloudSpritesArray[i].y = math.random(randomUp, randomDown)
@@ -132,7 +131,7 @@ end
 --Move road, bushes, forest
 function moveBgSprites(spriteArray, spriteWidth, speed)
   for i = 1, #spriteArray do
-    spriteArray[i].x -= gameSpeed + speed
+    spriteArray[i].x -= GameSpeed + speed
     if spriteArray[i].x <= -spriteWidth then
       spriteArray[i].x += screenWidth + 2 * spriteWidth
     end
@@ -148,6 +147,8 @@ function resetGameState()
   spawnTrees() -- add trees back to initial x positions
   bird:remove()
   bird = Player(80, 100)
+  resetScore()
+  resetGameSpeed()
 end
 
 function playdate.update()
@@ -156,12 +157,12 @@ function playdate.update()
     updateTitleScreen()
   end
   if GameState == "gameplay" then
-    gfx.clear()
     gfx.sprite.update()
     moveBgSprites(roadSprites, 10, 2)
     moveBgSprites(bushSprites, 20, 2)
     moveBgSprites(forestSprites, 20, 1)
     moveClouds(smallCloudSprites, 0, 20, 90)
     moveClouds(bigCloudSprites, 0, 30, 100)
+    updateScore()
   end
 end

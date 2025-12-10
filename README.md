@@ -2,6 +2,40 @@ Flappy Bird game clone
 Work in progress
 
 --------------------
+1.0.4 (08-12-2025)
+
+ADDED
+- Score display
+- Difficulty scales up every 5 points
+
+BUGS
+- Bird partially obscured by score display
+
+TO ADD
+- Game over screen and state
+- Rewrite score display to use sprite and PushContext
+- Turn background scrolling objects into a separate class
+- Save highscores
+- Display highscores on GameOver screen
+- Add function to menu to reset highscores
+
+--------------------
+1.0.3 (06-12-2025)
+
+ADDED
+- Animation works now. The bird is animated
+- Awkward reset function rewritten
+
+BUGS
+- None
+
+TO ADD
+- Game over screen and state
+- Scoring system and scoring UI
+- Game needs to start gradually speeding up as the score grows
+- Turn background scrolling objects into a separate class
+
+--------------------
 1.0.2 (06-12-2025)
 
 ADDED
