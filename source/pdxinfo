@@ -1,6 +1,6 @@
-name=FlappyBird4
+name=Winging it
 author=villewilson
 description=Fourth attempt at Flappy Bird clone for Playdate
 bundleID=com.villewilson.flappy4
-version=1.0.4
-buildNumber=5
+version=1.0.5
+buildNumber=6
