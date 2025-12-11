@@ -1,6 +1,7 @@
 import "Corelibs/graphics"
 import "Corelibs/sprites"
 import "Corelibs/animation"
+import "Corelibs/ui"
 
 import "treeSpawner"
 import "player"
@@ -36,6 +37,13 @@ function updateGameOverScreen()
   if pd.buttonJustPressed(pd.kButtonA) or pd.buttonIsPressed(pd.kButtonB) then
     resetGameState()
     GameState = "titlescreen"
+  end
+end
+
+-- Check if the crank is docked
+function undockCrank()
+  if playdate.isCrankDocked() then
+      playdate.ui.crankIndicator:draw()
   end
 end
 
@@ -177,6 +185,7 @@ function playdate.update()
     moveBgSprites(forestSprites, 20, 1)
     moveClouds(smallCloudSprites, 0, 20, 90)
     moveClouds(bigCloudSprites, 0, 30, 100)
+    undockCrank()
     updateScore()
   end
   if GameState == "gameover" then
